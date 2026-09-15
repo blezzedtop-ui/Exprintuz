@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+<defs>
+ <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#78c8ff"/><stop offset=".55" stop-color="#bde8ff"/><stop offset="1" stop-color="#f5f2d5"/></linearGradient>
+ <linearGradient id="mount" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#355f4a"/><stop offset="1" stop-color="#102d25"/></linearGradient>
+ <linearGradient id="water" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#5fb6d9"/><stop offset="1" stop-color="#153b55"/></linearGradient>
+ <filter id="blur"><feGaussianBlur stdDeviation="22"/></filter>
+</defs>
+<rect width="1600" height="1000" fill="url(#sky)"/>
+<circle cx="1280" cy="170" r="92" fill="#fff8c7" opacity=".8" filter="url(#blur)"/><circle cx="1280" cy="170" r="58" fill="#fff6bd" opacity=".95"/>
+<path d="M0 560L210 350 390 540 600 270 820 540 1030 330 1250 570 1450 300 1600 470V700H0Z" fill="#456f62" opacity=".7"/>
+<path d="M0 650L250 430 430 620 650 350 900 650 1120 410 1340 640 1530 390 1600 500V760H0Z" fill="url(#mount)"/>
+<path d="M0 700 Q350 610 700 720 T1600 690 V1000 H0Z" fill="url(#water)"/>
+<path d="M0 760 Q300 700 620 770 T1240 760 T1600 750" fill="none" stroke="#b9efff" stroke-opacity=".28" stroke-width="8"/>
+<g fill="#173a2e"><path d="M90 830l70-220 70 220z"/><path d="M210 870l65-205 65 205z"/><path d="M1370 860l70-230 70 230z"/><path d="M1490 900l55-190 55 190z"/></g>
+<g fill="#8fc7a0" opacity=".35"><circle cx="260" cy="180" r="55"/><circle cx="350" cy="160" r="42"/><circle cx="430" cy="195" r="50"/></g>
+</svg>

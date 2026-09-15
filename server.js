@@ -1,0 +1,19 @@
+const express = require("express");
+const path = require("path");
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.use(express.static(__dirname));
+
+app.get("/health", (_req, res) => {
+  res.json({ ok: true, service: "EXPRINT GROUP" });
+});
+
+app.get("*splat", (_req, res) => {
+  res.sendFile(path.join(__dirname, "index.html"));
+});
+
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`EXPRINT GROUP listening on ${PORT}`);
+});

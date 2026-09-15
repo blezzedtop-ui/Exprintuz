@@ -1,17 +1,15 @@
 {
-  "name": "gold-trading-market-gateway",
+  "name": "exprint-group-railway",
   "version": "1.0.0",
   "private": true,
-  "description": "Node.js realtime market gateway for GOLD Trading SaaS",
-  "main": "market-gateway.js",
+  "description": "EXPRINT GROUP static website packaged for GitHub + Railway",
   "scripts": {
-    "start": "node market-gateway.js"
+    "start": "node server.js"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   },
   "dependencies": {
-    "ws": "^8.18.0",
-    "dotenv": "^16.4.5"
+    "express": "^5.1.0"
   }
 }
