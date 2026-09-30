@@ -1,0 +1,64 @@
+name: Build GeneralsXWeb WASM
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/build-generals-wasm.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - name: Checkout launcher
+        uses: actions/checkout@v4
+
+      - name: Checkout GeneralsXWeb
+        uses: actions/checkout@v4
+        with:
+          repository: meerzulee/GeneralsXWeb
+          ref: igroteka-wasm
+          submodules: recursive
+          path: upstream
+
+      - name: Install build tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake ninja-build python3 python3-pip pkg-config
+          git clone https://github.com/emscripten-core/emsdk.git "$HOME/emsdk"
+          "$HOME/emsdk/emsdk" install latest
+          "$HOME/emsdk/emsdk" activate latest
+
+      - name: Configure WASM
+        working-directory: upstream
+        shell: bash
+        run: |
+          source "$HOME/emsdk/emsdk_env.sh"
+          cmake --preset wasm
+
+      - name: Build GeneralsXZH
+        working-directory: upstream
+        shell: bash
+        run: |
+          source "$HOME/emsdk/emsdk_env.sh"
+          cmake --build build/wasm --target GeneralsXZH.js --parallel 2
+
+      - name: Collect browser engine
+        shell: bash
+        run: |
+          mkdir -p artifact
+          find upstream/build/wasm -type f \( -name 'GeneralsXZH.js' -o -name 'GeneralsXZH.wasm' -o -name '*.worker.js' \) -exec cp -v {} artifact/ \;
+          test -f artifact/GeneralsXZH.js
+          test -f artifact/GeneralsXZH.wasm
+
+      - name: Upload WASM engine
+        uses: actions/upload-artifact@v4
+        with:
+          name: generalsxweb-engine
+          path: artifact/
+          if-no-files-found: error
+          retention-days: 14
